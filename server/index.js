@@ -6,10 +6,12 @@ const configs = require("./configs");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morganBody = require("morgan-body");
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+morganBody(app);
 app.get("/", (req, res) => {
   res.send("Hi..");
 });
@@ -44,27 +46,27 @@ app.listen(configs.port, err => {
  */
 const { Pool } = require("pg");
 
-const pgClient = new Pool({
-  host: configs.pgHost,
-  port: configs.pgPort,
-  database: configs.pgDatabase,
-  user: configs.pgUser,
-  password: configs.pgPassword
-});
+// const pgClient = new Pool({
+//   host: configs.pgHost,
+//   port: configs.pgPort,
+//   database: configs.pgDatabase,
+//   user: configs.pgUser,
+//   password: configs.pgPassword
+// });
 
-pgClient.on("error", () => console.log("Lost PG Connection"));
+// pgClient.on("error", () => console.log("Lost PG Connection"));
 
-pgClient
-  .query("CREATE TABLE IF NOT EXISTS values (number INT)")
-  .catch(err => console.log(err));
+// pgClient
+//   .query("CREATE TABLE IF NOT EXISTS values (number INT)")
+//   .catch(err => console.log(err));
 
 /**
  * Redis Client Setup
  */
 const redis = require("redis");
-const redisClient = redis.createClient({
-  port: configs.redisPort,
-  host: configs.redisHost,
-  retry_strategy: () => 1000
-});
-const redisPublisher = redisClient.duplicate();
+// const redisClient = redis.createClient({
+//   port: configs.redisPort,
+//   host: configs.redisHost,
+//   retry_strategy: () => 1000
+// });
+// const redisPublisher = redisClient.duplicate();
