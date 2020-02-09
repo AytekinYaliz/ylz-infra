@@ -48,7 +48,6 @@ class Fib extends Component {
   }
 
   render() {
-    console.log("asdf");
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
