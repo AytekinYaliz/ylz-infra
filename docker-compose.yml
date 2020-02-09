@@ -1,5 +1,12 @@
 version: "3"
 services:
+  ylz-infra-nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./ylz-infra-nginx
+    ports:
+      - "3050:80"
   postgres:
     image: "postgres:latest"
   redis:
