@@ -6,4 +6,4 @@
 - postgres
 - redis
 
-![High-Level Design](./images/High-Level Design.svg)
+![High-Level Design](./images/High-Level_Design.svg)
