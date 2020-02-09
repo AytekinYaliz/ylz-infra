@@ -16,11 +16,13 @@ app.get("/", (req, res) => {
   res.send("Hi..");
 });
 app.get("/values/all", async (req, res) => {
+  // Postgress
   const values = await pgClient.query("SELECT * from values");
 
   res.send(values.rows);
 });
 app.get("/values/current", async (req, res) => {
+  // Redis
   redisClient.hgetall("values", (err, values) => {
     res.send(values);
   });
