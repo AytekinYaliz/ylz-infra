@@ -1,0 +1,38 @@
+version: "3"
+services:
+  postgres:
+    image: "postgres:latest"
+  redis:
+    image: "redis:latest"
+  ylz-infra-clt:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./ylz-infra-clt
+    volumes:
+      - /app/node_modules
+      - ./ylz-infra-clt:/app
+  ylz-infra-svc:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./ylz-infra-svc
+    volumes:
+      - /app/node_modules
+      - ./ylz-infra-svc:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_DATABASE=postgres
+      - PG_USER=postgres
+      - PG_PASSWORD=postgres_password
+  ylz-infra-wkr:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./ylz-infra-wkr
+    volumes:
+      - /app/node_modules
+      - ./ylz-infra-wkr:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
